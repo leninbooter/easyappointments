@@ -130,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `ea_users` (
     `zip_code` VARCHAR(64),
     `notes` TEXT,
     `id_roles` INT(11) NOT NULL,
+    `id_provider` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `id_roles` (`id_roles`)
 )
@@ -155,6 +156,11 @@ CREATE TABLE IF NOT EXISTS `ea_user_settings` (
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8;
 
+CREATE TABLE IF NOT EXISTS `ea_providers` (
+    `id` INT(11) NOT NULL,
+    `name` VARCHAR(256),
+    `email` VARCHAR(512)
+);
 
 ALTER TABLE `ea_appointments`
     ADD CONSTRAINT `appointments_users_customer` FOREIGN KEY (`id_users_customer`) REFERENCES `ea_users` (`id`)

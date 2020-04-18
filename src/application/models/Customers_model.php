@@ -342,14 +342,13 @@ class Customers_Model extends CI_Model {
     /**
      * Get all, or specific records from appointment's table.
      *
+     * @param string $where_clause
+     * @param null $parentProviderId
+     * @return array Returns the rows from the database.
      * @example $this->Model->getBatch('id = ' . $recordId);
      *
-     * @param string $whereClause (OPTIONAL) The WHERE clause of the query to be executed. DO NOT INCLUDE 'WHERE'
-     * KEYWORD.
-     *
-     * @return array Returns the rows from the database.
      */
-    public function get_batch($where_clause = '')
+    public function get_batch($where_clause = '', $parentProviderId = null)
     {
         $customers_role_id = $this->get_customers_role_id();
 
@@ -359,6 +358,7 @@ class Customers_Model extends CI_Model {
         }
 
         $this->db->where('id_roles', $customers_role_id);
+        $this->db->where('id_provider', $parentProviderId);
 
         return $this->db->get('ea_users')->result_array();
     }

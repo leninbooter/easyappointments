@@ -39,3 +39,6 @@ function register($namespace, $path) {
 }
 
 register('Engine', __DIR__ . '/engine'); 
+register('Application', __DIR__ . '/chkskd/Application');
+register('Domain', __DIR__ . '/chkskd/Domain');
+register('Infrastructure', __DIR__ . '/chkskd/Infrastructure');

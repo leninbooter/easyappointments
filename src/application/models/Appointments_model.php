@@ -16,7 +16,7 @@
  *
  * @package Models
  */
-class Appointments_Model extends CI_Model {
+class Appointments_Model extends CI_Model implements \EA\Domain\Repositories\AppointmentsRepository {
     /**
      * Add an appointment record to the database.
      *
@@ -97,7 +97,7 @@ class Appointments_Model extends CI_Model {
     protected function _insert($appointment)
     {
         $appointment['book_datetime'] = date('Y-m-d H:i:s');
-        $appointment['hash'] = $this->generate_hash();
+        $appointment['hash'] = $this->generate_hash($appointment);
 
         if ( ! $this->db->insert('ea_appointments', $appointment))
         {
@@ -367,10 +367,11 @@ class Appointments_Model extends CI_Model {
      *
      * @return string Returns the unique appointment hash.
      */
-    public function generate_hash()
+    public function generate_hash($appointment)
     {
         $current_date = new DateTime();
-        return md5($current_date->getTimestamp());
+        $token = sprintf('%i*%s*%s', $current_date->getTimestamp(), $appointment['start_datetime'], $appointment['end_datetime']);
+        return md5($token);
     }
 
     /**
@@ -529,5 +530,14 @@ class Appointments_Model extends CI_Model {
         $appointment['customer'] = $this->db->get_where('ea_users',
             ['id' => $appointment['id_users_customer']])->row_array();
         return $appointment;
+    }
+
+    public function findAppointmentsThatStartInMinutes($minutes)
+    {
+        $now = time();
+        $now += $minutes*300;
+        $startDatetime = DateTime::createFromFormat('U', $now)->format('Y-m-d h:i:s');
+        return $this->db->get('ea_appointments');
+        return $this->db->get_where('ea_appointments', ['start_datetime' => $startDatetime])->result_array();
     }
 }

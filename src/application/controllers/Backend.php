@@ -13,7 +13,7 @@
 
 /**
  * Backend Controller
- *
+ * @property Customers_Model $customers_model
  * @package Controllers
  */
 class Backend extends CI_Controller {
@@ -127,13 +127,14 @@ class Backend extends CI_Controller {
         $this->load->model('settings_model');
         $this->load->model('user_model');
 
+        $providerId = $this->session->userdata('provider_id');
         $view['base_url'] = $this->config->item('base_url');
         $view['user_display_name'] = $this->user_model->get_user_display_name($this->session->userdata('user_id'));
         $view['active_menu'] = PRIV_CUSTOMERS;
         $view['company_name'] = $this->settings_model->get_setting('company_name');
         $view['date_format'] = $this->settings_model->get_setting('date_format');
         $view['time_format'] = $this->settings_model->get_setting('time_format');
-        $view['customers'] = $this->customers_model->get_batch();
+        $view['customers'] = $this->customers_model->get_batch('', $providerId);
         $view['available_providers'] = $this->providers_model->get_available_providers();
         $view['available_services'] = $this->services_model->get_available_services();
 
