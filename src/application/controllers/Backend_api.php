@@ -275,6 +275,7 @@ class Backend_api extends CI_Controller {
                     throw new Exception('You do not have the required privileges for this task.');
                 }
 
+                $customer['id_provider'] = $this->session->userdata('provider_id');
                 $customer['id'] = $this->customers_model->add($customer);
             }
 

@@ -102,7 +102,7 @@ class User_Model extends CI_Model {
         $user_data = $this->db
             ->select('ea_users.id AS user_id, ea_users.email AS user_email, '
                 . 'ea_roles.slug AS role_slug, ea_user_settings.username, '
-                . 'ea.users.id_provider AS provider_id')
+                . 'ea_users.id_provider AS provider_id')
             ->from('ea_users')
             ->join('ea_roles', 'ea_roles.id = ea_users.id_roles', 'inner')
             ->join('ea_user_settings', 'ea_user_settings.id_users = ea_users.id')

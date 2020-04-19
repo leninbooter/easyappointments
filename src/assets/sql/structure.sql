@@ -130,7 +130,6 @@ CREATE TABLE IF NOT EXISTS `ea_users` (
     `zip_code` VARCHAR(64),
     `notes` TEXT,
     `id_roles` INT(11) NOT NULL,
-    `id_provider` INT(11) NOT NULL,
     PRIMARY KEY (`id`),
     KEY `id_roles` (`id_roles`)
 )
@@ -155,12 +154,6 @@ CREATE TABLE IF NOT EXISTS `ea_user_settings` (
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8;
-
-CREATE TABLE IF NOT EXISTS `ea_providers` (
-    `id` INT(11) NOT NULL,
-    `name` VARCHAR(256),
-    `email` VARCHAR(512)
-);
 
 ALTER TABLE `ea_appointments`
     ADD CONSTRAINT `appointments_users_customer` FOREIGN KEY (`id_users_customer`) REFERENCES `ea_users` (`id`)
@@ -203,3 +196,16 @@ ALTER TABLE `ea_user_settings`
     ADD CONSTRAINT `user_settings_users` FOREIGN KEY (`id_users`) REFERENCES `ea_users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
+
+CREATE TABLE IF NOT EXISTS `ea_providers` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(256),
+    `email` VARCHAR(512),
+    PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `ea_users`
+ADD COLUMN `ìd_provider` INT(11) NOT NULL,
+ADD CONSTRAINT `ea_users_ea_proviers` FOREIGN KEY (`id_provider`) REFERENCES `ea_providers` (`id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
