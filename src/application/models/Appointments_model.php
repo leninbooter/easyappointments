@@ -537,7 +537,7 @@ class Appointments_Model extends CI_Model implements \EA\Domain\Repositories\App
         $now = time();
         $now += $minutes*300;
         $startDatetime = DateTime::createFromFormat('U', $now)->format('Y-m-d h:i:s');
-        return $this->db->get('ea_appointments');
+        return $this->db->get('ea_appointments')->result_array();
         return $this->db->get_where('ea_appointments', ['start_datetime' => $startDatetime])->result_array();
     }
 }

@@ -1290,7 +1290,7 @@ class Appointments extends CI_Controller {
         return $periods;
     }
 
-    private function send_appointment_link()
+    protected function send_appointment_link()
     {
         $this->load->model('appointments_model');
 
