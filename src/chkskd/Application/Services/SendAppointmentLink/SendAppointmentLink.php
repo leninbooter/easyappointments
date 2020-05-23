@@ -33,6 +33,7 @@ class SendAppointmentLink
         $appointments = $getWhatAppointmentsLinkSend->getAppointments();
 
         foreach ($appointments as $appointment) {
+            var_dump($appointment);
             $appointmentLinkNotification = new CreateAppointmentLinkNotification($this->urlShortener);
             echo $appointment['start_datetime'] . ' ' . $appointment['hash'];
             /** @var Sms $sms */
