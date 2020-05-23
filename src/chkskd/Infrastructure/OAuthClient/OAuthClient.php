@@ -14,6 +14,7 @@ class OAuthClient
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             sprintf('Authorization: %s %s', $this->tokenType, $this->token),
             sprintf('content-type: %s', 'application/json')
@@ -21,7 +22,7 @@ class OAuthClient
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         // $output contains the output string
         $output = curl_exec($ch);
-
+        var_dump($output);
         // extract header
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
         $header = substr($output, 0, $headerSize);
