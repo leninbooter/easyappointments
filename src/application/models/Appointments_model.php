@@ -548,7 +548,7 @@ class Appointments_Model extends CI_Model implements \EA\Domain\Repositories\App
             appt.start_datetime as start_datetime')
             ->from('ea_appointments appt')
             ->join('ea_users users', 'users.id = appt.id_users_customer', 'inner')
-            ->join('ea_users usersprovider', 'users.id = appt.id_users_provider ', 'inner')
+            ->join('ea_users usersprovider', 'usersprovider.id = appt.id_users_provider ', 'inner')
             ->get()->result_array();
         return $this->db->get('ea_appointments')->result_array();
         return $this->db->get_where('ea_appointments', ['start_datetime' => $startDatetime])->result_array();
