@@ -23,16 +23,8 @@ class OAuthClient
         // $output contains the output string
         $output = curl_exec($ch);
         var_dump($output);
-        // extract header
-        $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        $header = substr($output, 0, $headerSize);
-
-        // extract body
-        $body = substr($output, $headerSize);
-
         curl_close($ch);
-
-        return $body;
+        return $output;
     }
 
     protected function useBearerToken()
