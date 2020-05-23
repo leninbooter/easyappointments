@@ -18,7 +18,7 @@ class BitlyUrlShortener extends OAuthClient  implements UrlShortener
     {
         $body = array('long_url' =>  $url);
         $body = json_encode($body);
-        $requestResponse = $this->doPostRequest($body);
+        $requestResponse = $this->doPostRequest(self::ENDPOINT, $body);
         $response = json_decode($requestResponse, true);
         return $response['link'];
     }

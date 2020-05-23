@@ -22,6 +22,6 @@ class BulkSmsSender extends OAuthClient implements SendSms
 
         $payload = array('to' => $to, 'body' => $message);
         $payload = json_encode($payload);
-        $this->doPostRequest($payload);
+        $this->doPostRequest(self::BULKSMS_POST_URL, $payload);
     }
 }

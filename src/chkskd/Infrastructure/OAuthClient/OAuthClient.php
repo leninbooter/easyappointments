@@ -9,14 +9,14 @@ class OAuthClient
     protected $token;
     protected $tokenType = self::TYPE_TOKEN_BASIC;
 
-    protected function doPostRequest($body)
+    protected function doPostRequest($url, $body)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::BULKSMS_POST_URL);
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             sprintf('Authorization: %s %s', $this->tokenType, $this->token),
-            'content-type: application/json'
+            sprintf('content-type: %s', 'application/json')
         ));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         // $output contains the output string
