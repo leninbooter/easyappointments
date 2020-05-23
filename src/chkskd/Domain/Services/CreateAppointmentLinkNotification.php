@@ -32,7 +32,7 @@ class CreateAppointmentLinkNotification
         $message = sprintf(self::APPOINTMENT_LINK_MESSAGE,
             $appointment['customer'],
             $appointment['provider'],
-            $appointment['time'],
+            $appointment['start_datetime'],
             $link);
 
         return new Sms($to, $message);
