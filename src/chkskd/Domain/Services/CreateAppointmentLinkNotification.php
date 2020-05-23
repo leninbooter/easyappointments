@@ -8,7 +8,7 @@ use EA\Domain\Entities\Sms;
 
 class CreateAppointmentLinkNotification
 {
-    const APPOINTMENT_LINK_TEMPLATE = '%s/%s#config.enableDeepLinking=false';
+    const APPOINTMENT_LINK_TEMPLATE = '%s/%s#config.disableDeepLinking=true';
     const APPOINTMENT_LINK_MESSAGE = '%s, tu cita con %s hoy a las %s horas aqui %s';
 
     /** @var UrlShortener $urlShortener */
