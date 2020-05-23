@@ -3,7 +3,7 @@ namespace EA\Infrastructure\BulkSms;
 
 use EA\Domain\Services\SendSms;
 use EA\Engine\Api\V1\Exception;
-use EA\Infrastructure\OAuthClient;
+use EA\Infrastructure\OAuthClient\OAuthClient;
 
 class BulkSmsSender extends OAuthClient implements SendSms
 {

@@ -1,9 +1,10 @@
 <?php
+namespace EA\Infrastructure\Bitly;
 
+use EA\Domain\Services\UrlShortener;
+use EA\Infrastructure\OAuthClient\OAuthClient;
 
-use EA\Infrastructure\OAuthClient;
-
-class BitlyUrlShortener extends OAuthClient  implements \EA\Domain\Services\UrlShortener
+class BitlyUrlShortener extends OAuthClient  implements UrlShortener
 {
     const ENDPOINT = 'https://api-ssl.bitly.com/v4/shorten';
 

@@ -1,5 +1,5 @@
 <?php
-namespace EA\Infrastructure;
+namespace EA\Infrastructure\OAuthClient;
 
 class OAuthClient
 {

@@ -15,6 +15,7 @@ use EA\Application\Services\SendAppointmentLink\SendAppointmentLink;
 use \EA\Engine\Types\Text;
 use \EA\Engine\Types\Email;
 use \EA\Engine\Types\Url;
+use EA\Infrastructure\Bitly\BitlyUrlShortener;
 use EA\Infrastructure\BulkSms\BulkSmsSender as BulkSmsSenderAlias;
 
 /**
