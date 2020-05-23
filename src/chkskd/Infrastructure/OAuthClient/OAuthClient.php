@@ -24,10 +24,10 @@ class OAuthClient
 
         // extract header
         $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        $header = substr($body, 0, $headerSize);
+        $header = substr($output, 0, $headerSize);
 
         // extract body
-        $body = substr($body, $headerSize);
+        $body = substr($output, $headerSize);
 
         curl_close($ch);
 
