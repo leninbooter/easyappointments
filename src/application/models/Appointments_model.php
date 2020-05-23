@@ -542,7 +542,7 @@ class Appointments_Model extends CI_Model implements \EA\Domain\Repositories\App
             ->select('
             appt.start_datetime as start_datetime, 
             appt.hash as hash, 
-            user.phone_number, 
+            users.phone_number, 
             users.first_name as customer
             users.first_name as provider,
             appt.start_datetime as start_datetime')
