@@ -1289,12 +1289,4 @@ class Appointments extends CI_Controller {
 
         return $periods;
     }
-
-    protected function send_appointment_link()
-    {
-        $this->load->model('appointments_model');
-
-        $sendAppointmentsLink = new \EA\Application\Services\SendAppointmentLink\SendAppointmentLink($this->appointments_model);
-        $sendAppointmentsLink->execute();
-    }
 }
