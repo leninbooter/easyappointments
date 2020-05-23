@@ -27,8 +27,9 @@ class CreateAppointmentLinkNotification
         }
 
         $link = sprintf(self::APPOINTMENT_LINK_TEMPLATE, \Config::MEET_SERVER, $appointment['hash']);
+        var_dump($link);
         $link = $this->urlShortener->shortUrl($link);
-
+        var_dump($link);
         $message = sprintf(self::APPOINTMENT_LINK_MESSAGE,
             $appointment['customer'],
             $appointment['provider'],
