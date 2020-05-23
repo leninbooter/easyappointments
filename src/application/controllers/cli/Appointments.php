@@ -11,9 +11,11 @@
  * @since       v1.0.0
  * ---------------------------------------------------------------------------- */
 
+use EA\Application\Services\SendAppointmentLink\SendAppointmentLink;
 use \EA\Engine\Types\Text;
 use \EA\Engine\Types\Email;
 use \EA\Engine\Types\Url;
+use EA\Infrastructure\BulkSms\BulkSmsSender as BulkSmsSenderAlias;
 
 /**
  * Appointments Controller
@@ -49,8 +51,10 @@ class Appointments extends CI_Controller {
     public function send_appointment_link()
     {
         $this->load->model('appointments_model');
+        $urlShortener = new BitlyUrlShortener(Config::BITLY_ACCESS_TOKEN);
+        $smsSender = new BulkSmsSenderAlias(Config::BULKSMS_TOKEN_CODE);
 
-        $sendAppointmentsLink = new \EA\Application\Services\SendAppointmentLink\SendAppointmentLink($this->appointments_model);
+        $sendAppointmentsLink = new SendAppointmentLink($this->appointments_model, $urlShortener, $smsSender);
         $sendAppointmentsLink->execute();
     }
 }
